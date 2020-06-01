@@ -4,45 +4,47 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"strconv"
 	"strings"
 )
 
 func Marshal(v interface{}) (data []byte, err error) {
+	rt := reflect.TypeOf(v)
+	rv := reflect.ValueOf(v)
+	if rt.Kind() != reflect.Struct {
+		err = errors.New("please pass a struct")
+		return
+	}
+
+	for i := 0; i < rt.NumField(); i++ {
+		sectionType := rt.Field(i).Type
+		if sectionType.Kind() != reflect.Struct {
+			err = fmt.Errorf("section %s must  be a struct", rt.Field(i).Name)
+			return
+		}
+
+		sectionName := sectionType.Name()
+		section := fmt.Sprintf("[%s]\n", sectionName)
+		data = append(data, []byte(section)...)
+
+		for j := 0; j < sectionType.NumField(); j++ {
+			// 下层struct的tag
+			tagName := sectionType.Field(j).Tag.Get("ini")
+			if len(tagName) == 0 {
+				tagName = sectionType.Field(j).Name
+			}
+
+			tagVal := rv.Field(i).Field(j)
+			item := fmt.Sprintf("%s = %v\n", tagName, tagVal.Interface())
+			data = append(data, []byte(item)...)
+		}
+
+	}
+
+	fmt.Println(string(data))
 
 	return
 }
-
-/*
-[server]
-ip = 172.16.0.15
-port = 8080
-
-[mysql]
-username = root
-password = root
-database = test
-host = 172.16.0.1
-port = 3306
-
-
-type Config struct {
-	ServerConf Server `ini:"server"`
-	MysqlConf  Mysql  `ini:"mysql"`
-}
-
-type Server struct {
-	IP   string `ini:"ip"`
-	Port string `ini:"port"`
-}
-
-type Mysql struct {
-	UserName string `ini:"username"`
-	Password string `ini:"password"`
-	Database string `ini:"database"`
-	Host     string `ini:"host"`
-	Port     string `ini:"port"`
-}
-*/
 
 func UnMarshal(data []byte, v interface{}) (err error) {
 
@@ -90,6 +92,9 @@ func UnMarshal(data []byte, v interface{}) (err error) {
 			if err != nil {
 				return
 			}
+		} else {
+			err = fmt.Errorf("syntax error, invalid section:%s, lineNo:%d\n", line, i+1)
+			return
 		}
 
 	}
@@ -136,11 +141,29 @@ func ParseLine(line, lastSectionName string, rv reflect.Value, i int) (err error
 		return
 	}
 
-	for i := 0; i < rv.Elem().FieldByName(lastSectionName).Type().NumField(); i++ {
-		filed := rv.Elem().FieldByName(lastSectionName).Type().Field(i)
+	sectionType := rv.Elem().FieldByName(lastSectionName).Type()
+	if sectionType.Kind() != reflect.Struct {
+		err = fmt.Errorf("section %s must be a struct ", sectionType.Name())
+		return
+	}
+	for i := 0; i < sectionType.NumField(); i++ {
+		filed := sectionType.Field(i)
 		tagVal := filed.Tag.Get("ini")
 		if tagVal == lineName {
-			rv.Elem().FieldByName(lastSectionName).Field(i).SetString(lineVal)
+			switch sectionType.Field(i).Type.Kind() {
+			case reflect.String:
+				rv.Elem().FieldByName(lastSectionName).Field(i).SetString(lineVal)
+			case reflect.Int:
+				id, err := strconv.Atoi(lineVal)
+				if err != nil {
+					return err
+				}
+				rv.Elem().FieldByName(lastSectionName).Field(i).SetInt(int64(id))
+			default:
+				err = errors.New("Unsupport type")
+				return
+			}
+			//rv.Elem().FieldByName(lastSectionName).Field(i).SetString(lineVal)
 		}
 	}
 

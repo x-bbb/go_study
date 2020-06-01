@@ -20,7 +20,7 @@ type Mysql struct {
 	Password string `ini:"password"`
 	Database string `ini:"database"`
 	Host     string `ini:"host"`
-	Port     string `ini:"port"`
+	Port     int    `ini:"port"`
 }
 
 func TestIniConfig(t *testing.T) {
@@ -33,6 +33,12 @@ func TestIniConfig(t *testing.T) {
 	err = UnMarshal(data, &conf)
 	if err != nil {
 		t.Errorf("unmarshalk failed,err:%v", err)
+		return
+	}
+
+	_, err = Marshal(conf)
+	if err != nil {
+		t.Error(err)
 		return
 	}
 	t.Logf("unmarshal success, conf:%#v", conf)
