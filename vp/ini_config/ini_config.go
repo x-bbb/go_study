@@ -77,23 +77,70 @@ func UnMarshal(data []byte, v interface{}) (err error) {
 			}
 		}
 
-		if line[0] == '[' && line[len(line)-i] == ']' {
-			sectionName := strings.TrimSpace(line[1 : len(line)-1])
-			if len(sectionName) == 0 {
-				err = fmt.Errorf("syntax error, invalid section:%s, lineNo:%d\n", line, i+1)
+		if line[0] == '[' && line[len(line)-1] == ']' {
+			lastSectionName, err = ParseSection(line, rt)
+			if err != nil {
 				return
 			}
+			continue
+		}
 
-			for i := 0; i < rt.Elem().NumField(); i++ {
-				filed := rt.Elem().Field(i)
-				tagVal := filed.Tag.Get("ini")
-				if tagVal == sectionName {
-					lastSectionName = filed.Name
-					fmt.Println(lastSectionName)
-					break
-				}
+		if strings.Contains(line, "=") {
+			err = ParseLine(line, lastSectionName, rv, i)
+			if err != nil {
+				return
 			}
+		}
 
+	}
+
+	return
+}
+
+func ParseSection(line string, rt reflect.Type) (lastSectionName string, err error) {
+	sectionName := strings.TrimSpace(line[1 : len(line)-1])
+	if len(sectionName) == 0 {
+		err = fmt.Errorf("syntax error, invalid section:%s", line)
+		return
+	}
+
+	for i := 0; i < rt.Elem().NumField(); i++ {
+		filed := rt.Elem().Field(i)
+		tagVal := filed.Tag.Get("ini")
+		if tagVal == sectionName {
+			lastSectionName = filed.Name
+			return
+		}
+	}
+
+	return
+}
+
+func ParseLine(line, lastSectionName string, rv reflect.Value, i int) (err error) {
+	if len(line) <= 3 {
+		err = fmt.Errorf("syntax error, invalid,line:%d", i+1)
+		return
+	}
+
+	index := strings.Index(line, "=")
+	lineName := strings.TrimSpace(line[:index])
+	lineVal := strings.TrimSpace(line[index+1:])
+
+	if len(lineName) == 0 || len(lineVal) == 0 {
+		err = fmt.Errorf("syntax error, invalid,line:%d", i+1)
+		return
+	}
+
+	if len(lastSectionName) == 0 {
+		err = fmt.Errorf("syntax error, invalid,line:%d, mast pass an section", i+1)
+		return
+	}
+
+	for i := 0; i < rv.Elem().FieldByName(lastSectionName).Type().NumField(); i++ {
+		filed := rv.Elem().FieldByName(lastSectionName).Type().Field(i)
+		tagVal := filed.Tag.Get("ini")
+		if tagVal == lineName {
+			rv.Elem().FieldByName(lastSectionName).Field(i).SetString(lineVal)
 		}
 	}
 
