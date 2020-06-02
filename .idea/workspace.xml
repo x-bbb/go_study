@@ -26,8 +26,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbd0bb58-ad07-4d21-ad6c-c1c6ac2abbed" name="Default Changelist" comment="完成marshal">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/go_study.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/goroutine/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/select/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vp/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/vp/main/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vp/ini_config/ini_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/vp/ini_config/ini_config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +48,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/go" />
+  <component name="GOROOT" path="$PROJECT_DIR$/../golang" />
   <component name="Git.Settings">
     <excluded-from-favorite>
       <branch-storage>
@@ -91,6 +98,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go Application" />
     <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -98,15 +106,34 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunManager" selected="Go Test.TestIniConfig in go_study/vp/ini_config">
+  <component name="RunManager" selected="Go Build.go build go_study/select">
     <configuration name="go build go_study" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go_study" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$/main.go" />
       <package value="go_study" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go_study/goroutine" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go_study" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/goroutine/main.go" />
+      <package value="go_study/goroutine" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build go_study/select" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go_study" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <filePath value="$PROJECT_DIR$/select/main.go" />
+      <package value="go_study/select" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -132,6 +159,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build go_study/select" />
+        <item itemvalue="Go Build.go build go_study/goroutine" />
         <item itemvalue="Go Test.TestIniConfig in go_study/vp/ini_config" />
         <item itemvalue="Go Build.go build go_study/vp/main" />
         <item itemvalue="Go Build.go build go_study" />
@@ -163,6 +192,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -185,50 +215,59 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2065" y="325" key="EditFileWatcherDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590821850226" />
-    <state width="1398" height="327" key="GridCell.Tab.0.bottom" timestamp="1591023211295">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="224" key="GridCell.Tab.0.bottom" timestamp="1591077006073">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590822224200" />
     <state width="1398" height="327" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1591023211295" />
-    <state width="1398" height="327" key="GridCell.Tab.0.center" timestamp="1591023211294">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="224" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591077006073" />
+    <state width="1877" height="224" key="GridCell.Tab.0.center" timestamp="1591077006073">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590822224199" />
     <state width="1398" height="327" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1591023211294" />
-    <state width="1398" height="327" key="GridCell.Tab.0.left" timestamp="1591023211293">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="224" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591077006073" />
+    <state width="1877" height="224" key="GridCell.Tab.0.left" timestamp="1591077006073">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590822224198" />
     <state width="1398" height="327" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1591023211293" />
-    <state width="1398" height="327" key="GridCell.Tab.0.right" timestamp="1591023211295">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="224" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591077006073" />
+    <state width="1877" height="224" key="GridCell.Tab.0.right" timestamp="1591077006073">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="305" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590822224200" />
     <state width="1398" height="327" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1591023211295" />
-    <state width="1398" height="304" key="GridCell.Tab.1.bottom" timestamp="1591014069455">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="224" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591077006073" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1591065055834">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1398" height="304" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1591014069455" />
-    <state width="1398" height="304" key="GridCell.Tab.1.center" timestamp="1591014069454">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591065055834" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1591065055834">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1398" height="304" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1591014069454" />
-    <state width="1398" height="304" key="GridCell.Tab.1.left" timestamp="1591014069454">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591065055834" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1591065055834">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1398" height="304" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1591014069454" />
-    <state width="1398" height="304" key="GridCell.Tab.1.right" timestamp="1591014069454">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591065055834" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1591065055834">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1398" height="304" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1591014069454" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591065055834" />
     <state x="533" y="159" key="RollbackChangesDialog" timestamp="1590820017894">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1590820017894" />
-    <state x="1909" y="179" key="SettingsEditor" timestamp="1590821851500">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="2280" y="290" key="SettingsEditor" timestamp="1591061481275">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="1909" y="179" key="SettingsEditor/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1590821851500" />
+    <state x="2280" y="290" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1591061481275" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1591023230212">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

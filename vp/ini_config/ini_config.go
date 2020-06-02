@@ -150,6 +150,7 @@ func ParseLine(line, lastSectionName string, rv reflect.Value, i int) (err error
 		filed := sectionType.Field(i)
 		tagVal := filed.Tag.Get("ini")
 		if tagVal == lineName {
+			// TODO:添加其他类型
 			switch sectionType.Field(i).Type.Kind() {
 			case reflect.String:
 				rv.Elem().FieldByName(lastSectionName).Field(i).SetString(lineVal)
